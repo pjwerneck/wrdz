@@ -6,24 +6,19 @@ readme = "README.md"
 authors = [
     { name = "Pedro Werneck", email = "pjwerneck@gmail.com" }
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
     "msgpack>=1.0.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "hypothesis>=6.0",
-    "black>=22.0",
-    "mypy>=1.0",
-    "rich>=12.0",
-    "bump2version>=1.0",
 ]
 
 [project.urls]
