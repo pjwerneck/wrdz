@@ -1,24 +1,20 @@
 [project]
 name = "wrdz"
 version = "0.1.0"
-description = "Dictionary-based text compression optimized for short strings"
+description = "Dictionary-based text compression optimized for short strings and URLs"
 readme = "README.md"
 authors = [
     { name = "Pedro Werneck", email = "pjwerneck@gmail.com" }
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "msgpack>=1.1.0",
+    "msgpack>=1.0.0",
 ]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
 [project.optional-dependencies]
 dev = [
@@ -44,6 +40,7 @@ dev = [
     "ruff>=0.9.4",
     "smaz-py3>=1.1.3",
 ]
+
 [tool.ruff]
 exclude = [".git", ".venv"]
 line-length = 99
@@ -59,3 +56,27 @@ force-single-line = true
 [tool.black]
 line-length = 100
 target-version = ['py37']
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+  "src/wrdz/**/*.py",
+  "src/wrdz/dicts/*.dict",
+]
+exclude = [
+  "tests/**",
+  "datasets/**",
+  "scripts/**",
+]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["tests", ".*"]
+only_packages = true
+
+[tool.hatch.build.targets.wheel]
+exclude = ["tests", ".*"]
+only_packages = true
+packages = ["src/wrdz"]

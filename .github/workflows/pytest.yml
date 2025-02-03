@@ -2,7 +2,7 @@ name: pytest
 
 on:
   push:
-    branches: [ "development", "main" ]
+    branches: [ "development", "master" ]
   pull_request:
     types: [ ready_for_review, opened, synchronize, reopened, converted_to_draft ]
 
