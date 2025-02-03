@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from hypothesis import given
 from hypothesis import strategies as st
 from hypothesis.provisional import urls as st_urls
@@ -6,6 +8,8 @@ from wrdz import compress
 from wrdz import compress_urls
 from wrdz import decompress
 from wrdz import decompress_urls
+
+HERE = Path(__file__).parent
 
 
 @given(st.text(min_size=5, max_size=140, alphabet=st.characters(codec="ascii")))
@@ -29,8 +33,8 @@ def test_random_urls(text):
     assert decompressed == text
 
 
-def test_english_test_dataset():
-    with open("datasets/en_US/test.txt") as f:
+def test_english_text():
+    with open(HERE / "english.txt") as f:
         text = f.read()
     for line in text.splitlines():
         compressed = compress(line)
@@ -39,7 +43,7 @@ def test_english_test_dataset():
 
 
 def test_urls_test_dataset():
-    with open("datasets/urls/test.txt") as f:
+    with open(HERE / "urls.txt") as f:
         text = f.read()
     for line in text.splitlines():
         compressed = compress_urls(line)

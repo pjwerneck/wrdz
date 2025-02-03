@@ -4,8 +4,8 @@ from wrdz.base import base_compress
 from wrdz.base import base_decompress
 from wrdz.train import train_dictionary
 
-ROOT = Path(__file__).parent.parent
-TRAIN_FILE = ROOT / "datasets" / "en_US" / "train.txt"
+HERE = Path(__file__).parent
+TRAIN_FILE = HERE / "english.txt"
 
 
 def test_train_dictionary():
