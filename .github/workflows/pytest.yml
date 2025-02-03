@@ -1,0 +1,40 @@
+name: pytest
+
+on:
+  push:
+    branches: [ "development", "main" ]
+  pull_request:
+    types: [ ready_for_review, opened, synchronize, reopened, converted_to_draft ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      id: setup-python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: uv sync --all-extras --dev
+
+    - name: Test with pytest
+      run: |
+        source .venv/bin/activate
+        pytest tests/
