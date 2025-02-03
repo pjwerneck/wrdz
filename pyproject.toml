@@ -1,12 +1,17 @@
 [project]
 name = "wrdz"
 version = "0.1.0"
-description = "Add your description here"
+description = "Dictionary-based text compression optimized for short strings"
 readme = "README.md"
 authors = [
     { name = "Pedro Werneck", email = "pjwerneck@gmail.com" }
 ]
 requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 dependencies = [
     "msgpack>=1.1.0",
 ]
@@ -14,6 +19,20 @@ dependencies = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "hypothesis>=6.0",
+    "black>=22.0",
+    "mypy>=1.0",
+    "rich>=12.0",
+    "bump2version>=1.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pjwerneck/wrdz"
+"Bug Tracker" = "https://github.com/pjwerneck/wrdz/issues"
 
 [dependency-groups]
 dev = [
@@ -36,3 +55,7 @@ docstring-code-format = true
 
 [tool.ruff.lint.isort]
 force-single-line = true
+
+[tool.black]
+line-length = 100
+target-version = ['py37']
